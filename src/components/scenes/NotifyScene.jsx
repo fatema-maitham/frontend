@@ -14,8 +14,9 @@ export default function NotifyScene() {
   const shown = NOTES.slice(0, step + 1).reverse();
 
   return (
-    <Scene sceneRef={ref} height={280} tone="scene-deep" label="Notifications">
-      <div className="container stack-center notify-layout">
+    <Scene sceneRef={ref} height={280} label="Notifications">
+      <div className="container">
+        <div className="navy-panel stack-center notify-layout">
         <h2 className="section-title notify-title">We'll tell you when.</h2>
 
         <div className="notify-wrap" aria-hidden="true">
@@ -37,6 +38,7 @@ export default function NotifyScene() {
               ))}
             </div>
           </Phone>
+        </div>
         </div>
       </div>
     </Scene>

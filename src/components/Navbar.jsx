@@ -6,6 +6,7 @@ export default function Navbar() {
       <div className="container navbar-inner">
         <Logo />
         <nav className="nav-links" aria-label="Main">
+          <a href="#how">How it works</a>
           <a href="#business">For businesses</a>
           <a href="/login">Log in</a>
         </nav>

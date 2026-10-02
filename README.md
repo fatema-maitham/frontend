@@ -13,58 +13,60 @@ Open http://localhost:5173
 
 During development, requests to `/api` are forwarded to the FastAPI backend at `http://localhost:8000` (see `vite.config.js`).
 
-## Landing page: a story told by scrolling
+## Landing page
 
-Instead of hero, features, features, call to action, the page shows what QLess does while you scroll:
+Light page with QLess colors only, readable text sizes (body text 16px and up).
 
-standing in line → join QLess → leave the line → watch your place move → get notified → your turn → the business side → get started
-
-| Scene | What scrolling does |
+| Section | What it does |
 | --- | --- |
-| 1. Hero | The queue moves up; your position counts down from #12 to "You're next" |
-| 2. Leave the line | People in a physical line turn into phones, one by one |
-| 3. Your queue follows you | The phone's position goes #7 → #4 and the wait 18 → 3 min |
-| 4. Real-time | People ahead are served; "Now serving" catches up to you |
-| 5. Notifications | "You're getting close" → "You're next" → "It's your turn!" pops out of the phone |
-| 6. For businesses | A customer ticket expands into the staff dashboard, which keeps updating |
-| 7. Final | Join → Wait remotely → Track → Get notified → Your turn, then one closing line |
+| Hero (navy block) | Live queue demo: people ahead get served every few seconds and your position counts down to "You're next" |
+| How it works | 4 ticket-shaped steps; a red track fills as you scroll and each ticket lights up |
+| Your queue follows you (pinned) | Scroll and the phone's position goes #7 to #4, wait 18 to 3 min |
+| We'll tell you when (pinned, navy block) | Notifications build up to "It's your turn!" |
+| For businesses (pinned) | A customer ticket expands into the staff dashboard |
+| Places on QLess | Loads businesses from `GET /api/businesses` (loading, empty and error states included) |
+| Closing | A big cream ticket with the sign-up buttons |
 
-### How it works
-
-- Each scene is a tall `<section>` whose inner frame is `position: sticky`, so it stays on screen while you scroll through it (`src/components/Scene.jsx`).
-- `src/lib/useScrollScene.js` measures how far you are through the scene and writes it as the CSS variable `--p` (0 to 1). Smooth movement is done in CSS with `--p`, so React does not re-render on every scroll frame. It also returns a `step` for text that changes in jumps (like #7 → #6).
-- With "reduce motion" turned on, scenes are not pinned and each shows its key moment as a normal section.
+Pinned sections use `src/components/Scene.jsx` and `src/lib/useScrollScene.js`, which writes scroll progress to the CSS variable `--p` so the motion runs in CSS. With "reduce motion" on, nothing is pinned.
 
 ### Colors
 
 | Color | Use |
 | --- | --- |
-| Navy `#0f2b7f` | Page background |
-| Cream `#f9eeb8` | Text (10.7:1 contrast on navy) |
-| Red `#d62c32` | "You" moments and buttons, always as a fill with white text (red text on navy is too low contrast) |
+| Navy `#0f2b7f` | Headings, hero and notification blocks |
+| Red `#d62c32` | Main buttons and "you" moments, as a fill with white text |
+| Cream `#f9eeb8` | Highlights on navy, queue demo card, closing ticket |
+
+### Backend check
+
+`src/services/businessService.js` calls `/api/businesses` and accepts a list or `{ items: [...] }`. Each card uses `name`, `category`, `description` and `city` (or `address`) if present. Adjust the field names if your backend uses different ones.
 
 ## Structure
 
 ```
 src/
   main.jsx
-  App.jsx                    the order of the story
+  App.jsx                    page order
   index.css                  colors + all styles
   lib/
-    useScrollScene.js        scroll progress for pinned scenes
+    useScrollScene.js        scroll progress (pinned scenes + normal sections)
     useReducedMotion.js
   components/
     Navbar.jsx
     Logo.jsx
     Footer.jsx
+    QueueDemo.jsx            live queue in the hero
     Scene.jsx                pinned scroll section
     Phone.jsx                phone frame
+    sections/
+      Hero.jsx
+      HowItWorks.jsx
+      Places.jsx
+      Closing.jsx
     scenes/
-      HeroScene.jsx
-      LineScene.jsx
       PhoneScene.jsx
-      LiveScene.jsx
       NotifyScene.jsx
       BusinessScene.jsx
-      FinalScene.jsx
+  services/
+    businessService.js       GET /api/businesses
 ```
