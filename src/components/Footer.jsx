@@ -1,15 +1,14 @@
+import Logo from "./Logo.jsx";
+
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-inner">
-        <a href="/" className="logo">
-          <span className="logo-mark">Q</span>
-          <span>QLess</span>
-        </a>
-        <nav className="footer-links">
-          <a href="/login">Log in</a>
-          <a href="/register">Sign up</a>
+        <Logo />
+        <nav className="footer-links" aria-label="Footer">
+          <a href="#how">How it works</a>
           <a href="#business">For businesses</a>
+          <a href="/login">Log in</a>
         </nav>
         <p className="copyright">© {new Date().getFullYear()} QLess</p>
       </div>

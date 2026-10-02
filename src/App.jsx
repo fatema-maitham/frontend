@@ -1,8 +1,9 @@
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
-import HowItWorks from "./components/HowItWorks.jsx";
-import ForBusinesses from "./components/ForBusinesses.jsx";
-import Benefits from "./components/Benefits.jsx";
+import Steps from "./components/Steps.jsx";
+import Moment from "./components/Moment.jsx";
+import Business from "./components/Business.jsx";
+import Closing from "./components/Closing.jsx";
 import Footer from "./components/Footer.jsx";
 
 export default function App() {
@@ -11,9 +12,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <HowItWorks />
-        <ForBusinesses />
-        <Benefits />
+        <Steps />
+        <Moment />
+        <Business />
+        <Closing />
       </main>
       <Footer />
     </>
