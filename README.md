@@ -22,7 +22,7 @@ During development, requests to `/api` are forwarded to the FastAPI backend at `
 - "For businesses" uses stacking cards: each card pins as you scroll and the earlier ones shrink back underneath (CSS scroll-driven animation, no scroll listeners). On phones the cards simply flow.
 - The hero ticket is a live demo: the queue counts down by itself, and visitors can drag the ticket. It springs back using the small physics helper in `src/lib/spring.js`.
 - Respects "reduce motion", "reduce transparency" and "increase contrast" settings.
-- The two photos are placeholders from picsum.photos. Replace them (see the `TODO` comment in `Moment.jsx`).
+- The photo is a placeholder from picsum.photos. Replace it (see the `TODO` comment in `Moment.jsx`).
 
 ## Structure
 
