@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
+import Industries from "./components/Industries.jsx";
 import Steps from "./components/Steps.jsx";
 import Moment from "./components/Moment.jsx";
 import Business from "./components/Business.jsx";
@@ -12,9 +13,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Industries />
         <Steps />
-        <Moment />
         <Business />
+        <Moment />
         <Closing />
       </main>
       <Footer />

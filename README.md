@@ -18,9 +18,11 @@ During development, requests to `/api` are forwarded to the FastAPI backend at `
 - Light and dark mode follow the visitor's system setting.
 - Uses the system font (San Francisco on Apple devices).
 - Icons: Phosphor icons via `react-icons/pi`.
+- Hero headline rotates through places (clinic, bank, salon...), and an industries strip drifts under it.
+- "For businesses" uses stacking cards: each card pins as you scroll and the earlier ones shrink back underneath (CSS scroll-driven animation, no scroll listeners). On phones the cards simply flow.
 - The hero ticket is a live demo: the queue counts down by itself, and visitors can drag the ticket. It springs back using the small physics helper in `src/lib/spring.js`.
 - Respects "reduce motion", "reduce transparency" and "increase contrast" settings.
-- The two photos are placeholders from picsum.photos. Replace them (see the `TODO` comments in `Moment.jsx` and `Business.jsx`).
+- The two photos are placeholders from picsum.photos. Replace them (see the `TODO` comment in `Moment.jsx`).
 
 ## Structure
 
@@ -35,12 +37,16 @@ src/
   components/
     Navbar.jsx
     Logo.jsx
-    Hero.jsx
+    Hero.jsx             rotating place name
     LiveTicket.jsx       interactive ticket demo
+    Industries.jsx       moving strip of places
     Steps.jsx            how it works
+    Business.jsx         stacking scroll cards
+    CallNext.jsx         demo: call next customer
+    HoursDemo.jsx        demo: branch hours and services
+    AnnounceDemo.jsx     demo: phone notifications
+    ApprovalDemo.jsx     demo: review steps
     Moment.jsx           full-width photo
-    Business.jsx         for businesses (bento grid)
-    CallNext.jsx         interactive "call next" demo
     Closing.jsx
     Footer.jsx
 ```
